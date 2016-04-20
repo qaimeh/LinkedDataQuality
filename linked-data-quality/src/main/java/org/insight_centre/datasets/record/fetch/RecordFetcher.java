@@ -1,6 +1,9 @@
 package org.insight_centre.datasets.record.fetch;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.insight_centre.uri.factory.URIDereference;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -12,6 +15,12 @@ import com.hp.hpl.jena.query.ResultSet;
 
 public class RecordFetcher {
 
+	private List<String> listOfUri;
+	
+	public RecordFetcher(){
+		listOfUri= new ArrayList<String>();
+	}
+	
 	public void provideEndpointList( List<String> endpLst){
 		
 		for(String endp: endpLst){
@@ -37,9 +46,11 @@ public class RecordFetcher {
 		while(resuts.hasNext()){
 			
 			QuerySolution sol= resuts.nextSolution();
-			System.out.println(sol);
-			
+			System.out.println(sol.get("?class"));
+			listOfUri.add(sol.get("?class").toString());
 		}
+		
+		URIDereference.getDereferencedURI(listOfUri);
 		
 	}
 	
