@@ -6,9 +6,8 @@ public class URIDereference extends URIManipulator{
 
 	public static List<String> getDereferencedURI(List<String> lstOfURIs){
 	
-		for(String uri:lstOfURIs){
-			URIDereferencer(uri);
-		}
+			URIDereferencer(lstOfURIs);
+		
 		return null;
 	}
 	
