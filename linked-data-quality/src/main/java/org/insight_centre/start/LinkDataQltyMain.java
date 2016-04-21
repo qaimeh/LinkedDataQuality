@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.insight_centre.datasets.record.fetch.RecordFetcher;
+import org.insight_centre.uri.factory.URIDereference;
 
 public class LinkDataQltyMain {
 
@@ -19,22 +20,25 @@ static List<String> endpointLst= new ArrayList<String>();
 		
 		RecordFetcher recordFetcher= new RecordFetcher();
 	
-		recordFetcher.provideEndpointList(endpointLst);
-		//URIValidator("http://dbpedia.org/sparql");
+		List<String> classList=null;
+		List<String> subjList=null;
+		
+		for(String endp: endpointLst){
+		
+			// get the classes of the particular endpoint
+			classList=recordFetcher.getClasses(endp);
+			
+			// dereference the class uri
+			URIDereference.uriDereferencer(classList);
+			
+			//get the subject of given instance
+			
+			
+		}
+		
+		
+		
 
 	}
 	
-	public static void URIValidator (String URIstr){
-		
-		boolean checkValidity;
-		UrlValidator validator= new UrlValidator();
-		checkValidity=validator.isValid(URIstr);
-		
-		if(checkValidity){
-			System.out.println("uri is valid");
-		}else{
-			System.err.println("uri is not valid");
-		}
-	}
-
 }
