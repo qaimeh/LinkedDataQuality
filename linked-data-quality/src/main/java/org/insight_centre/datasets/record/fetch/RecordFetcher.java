@@ -3,9 +3,6 @@ package org.insight_centre.datasets.record.fetch;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.insight_centre.uri.factory.URIDereference;
-import org.insight_centre.uri.factory.URIValidator;
-
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -13,20 +10,16 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import com.hp.hpl.jena.rdf.model.Resource;
 
 
 public class RecordFetcher {
-
-	
-	
 
 	public List<String> getClasses(String endp) {
 		
 		List<String> listOfUri=  new ArrayList<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct * {[] a ?class} limit 10";
+		String qryStr= "select distinct ?class {[] a ?class} limit 10";
 		
 		qryExec= execQueries(endp, qryStr);
 		
@@ -46,6 +39,29 @@ public class RecordFetcher {
 	}
 	
 	
+	public List<String> getClassInstances(String endp, String classUri){
+		List<String> listOfUri=  new ArrayList<String>();
+	
+	QueryExecution qryExec= null;
+		
+		String qryStr= String.format("select distinct ?class {?class a <%s>} limit 10",classUri);
+		
+		qryExec= execQueries(endp, qryStr);
+		
+		ResultSet resuts= qryExec.execSelect();
+		
+		while(resuts.hasNext()){
+			
+			QuerySolution sol= resuts.nextSolution();
+			System.out.println(sol.get("?s"));
+			listOfUri.add(sol.get("?s").toString());
+		}
+		
+		
+		return listOfUri;
+		
+	}
+	
 	public List<String> getSubject(String endp) {
 		
 		List<String> listOfUri=  new ArrayList<String>();
@@ -64,7 +80,6 @@ public class RecordFetcher {
 			listOfUri.add(sol.get("?s").toString());
 		}
 		
-		//URIDereference.getDereferencedURI(listOfUri);
 		
 		return listOfUri;
 	}
@@ -109,7 +124,6 @@ public class RecordFetcher {
 			listOfUri.add(sol.get("?o").toString());
 		}
 		
-		//URIDereference.getDereferencedURI(listOfUri);
 		
 		return listOfUri;
 	}

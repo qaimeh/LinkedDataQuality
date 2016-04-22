@@ -10,8 +10,6 @@ import org.apache.commons.validator.routines.UrlValidator;
 
 
 public abstract class URIManipulator {
-
-	//private static final int MYTHREADS = 14;
 	
 	
 	public static String uriDereferencer (List<String> lstURI){
