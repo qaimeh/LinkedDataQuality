@@ -1,7 +1,16 @@
 package org.insight_centre.datasets.record.fetch;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.insight_centre.uri.factory.URIDereference;
+import org.insight_centre.util.LDQUtils;
+import org.insight_centre.vocab.VocabLDQ;
+import org.insight_centre.vocab.Void;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -9,14 +18,90 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+
 
 
 public class RecordFetcher {
-
-	public List<String> getClasses(String endp) {
+Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
+	
+	
+	public void queryAndGenerateRDF(String endp, Model mdl) {
 		
-		List<String> listOfUri=  new ArrayList<String>();
+		Set<String> derefURISet= new HashSet<String>();
+		// create the dataset resource with the LDQ vocab as prefix used
+		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
+		// create the the hasQualityProile URI as new resource 
+		Resource qualityProfile= null;
+		try {
+			String currentTime= LDQUtils.getCurrentTime();
+			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
+			.addProperty(VocabLDQ.hasQualityProfile,
+					mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)));
+			// create a dataset property and add into the model					
+			qualityProfile=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime));
+			
+			// use the hasQualityProfile resoruce of the dataset as new resource
+			
+			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"));
+			
+			
+			// get the set of dereferenced URIs
+			derefURISet=URIDereference.getDereferencedURI(getAllResources(endp));
+		
+			for(String derefUri: derefURISet){
+				
+				System.err.println(derefUri);
+			}
+		
+				} catch (Exception e) {
+			_log.error("exception {}", e.getCause());
+		}
+		mdl.write(System.out,"RDF/XML");
+		
+	}
+	
+	public Set<String> getAllResources(String endp){
+		
+
+		Set<String> setOfUri=  new HashSet<String>();
+		QueryExecution qryExec= null;
+		
+		String qryStr= "select distinct * {?s ?p ?o} limit 1000";
+		
+		qryExec= execQueries(endp, qryStr);
+		
+		ResultSet resuts= qryExec.execSelect();
+		
+		while(resuts.hasNext()){
+			
+			QuerySolution sol= resuts.nextSolution();
+			RDFNode rdfNSub = sol.get("?s");
+			RDFNode rdfNPred = sol.get("?p");
+			RDFNode rdfNObj = sol.get("?o");
+
+			if (!rdfNSub.toString().startsWith("http://www.openlinksw.com/")) {
+				if (checkIfResource(rdfNSub)) {
+					setOfUri.add(sol.get("?s").toString());
+				}
+				if (checkIfResource(rdfNPred)) {
+					setOfUri.add(sol.get("?p").toString());
+				}
+				if (checkIfResource(rdfNObj)) {
+					setOfUri.add(sol.get("?o").toString());
+				}
+			}
+		}
+
+		return setOfUri;
+	}
+	
+	public Set<String> getClasses(String endp) {
+		
+		Set<String> setOfUri=  new HashSet<String>();
 		QueryExecution qryExec= null;
 		
 		String qryStr= "select distinct ?class {[] a ?class} limit 10";
@@ -31,16 +116,16 @@ public class RecordFetcher {
 			RDFNode rdfN = sol.get("?class");
 			
 			if(checkIfResource(rdfN)){
-				listOfUri.add(sol.get("?class").toString());
+				setOfUri.add(sol.get("?class").toString());
 			}
 		}
 		
-		return listOfUri;
+		return setOfUri;
 	}
 	
 	
-	public List<String> getClassInstances(String endp, String classUri){
-		List<String> listOfUri=  new ArrayList<String>();
+	public Set<String> getClassInstances(String endp, String classUri){
+		Set<String> listOfUri=  new HashSet<String>();
 	
 	QueryExecution qryExec= null;
 		

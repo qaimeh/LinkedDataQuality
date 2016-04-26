@@ -2,22 +2,43 @@ package org.insight_centre.uri.factory;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.apache.commons.validator.routines.UrlValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public abstract class URIManipulator {
 	
+	static final Logger _log= LoggerFactory.getLogger(URIManipulator.class);
 	
-	public static String uriDereferencer (List<String> lstURI){
+	public static Set<String> uriDereferencer (Set<String> lstURI){
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-     
+		Future<String> derefrencedVar;
+		
+		Set<String> dereferencedURIs= new HashSet<String>();
+		
 		for (String url:lstURI) {
-            Runnable worker = new MyRunnable(url);
-            executor.execute(worker);
+            derefrencedVar = executor.submit(new DerefCallable(url));
+            try {
+            	// add the dereferenced URI into set
+				dereferencedURIs.add(derefrencedVar.get());
+				
+			} catch (InterruptedException e) {
+				_log.error(" thread interrupted exception {}", e.getCause());
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				_log.error("thread execution exception {}", e.getCause());
+			}
+            
         }
         executor.shutdown();
         
@@ -28,11 +49,11 @@ public abstract class URIManipulator {
         System.out.println("\nFinished all threads");
         
 		
-		return null;
+		return dereferencedURIs;
 	}
 	
 	
-	public static void uriValidator (List<String> URIstr){
+	public static void uriValidator (Set<String> URIstr){
 	
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 	     
@@ -77,15 +98,15 @@ public abstract class URIManipulator {
 	
 	
 	
-    public static class MyRunnable implements Runnable {
+    public static class DerefCallable implements Callable<String> {
         private final String url;
  
-        MyRunnable(String url) {
+        DerefCallable(String url) {
             this.url = url;
         }
  
-        public void run() {
-        	
+		public String call() throws Exception {
+
             String result = "";
             int code = 200;
             try {
@@ -98,18 +119,20 @@ public abstract class URIManipulator {
  
                 code = connection.getResponseCode();
                 if (code == 200) {
-                    result = "Green\t";
+                    result = url;
                     long threadId = Thread.currentThread().getId();
     	            System.out.println("Thread # " + threadId + " is doing this task");
     	            
                 }
             } catch (Exception e) {
-                result = "->Red<-\t";
+                System.err.println("not a dereferenced uri"+ url);
+                _log.error("not a dereferenceable uri {}", url);
                 long threadId = Thread.currentThread().getId();
 	            System.out.println("Thread # " + threadId + " is doing this task");
 	            
             }
-            System.out.println(url + "\t\tStatus:" + result);
-        }
+            
+			return result;
+		}
     }
 }

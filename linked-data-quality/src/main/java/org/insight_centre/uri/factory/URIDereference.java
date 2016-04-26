@@ -1,14 +1,14 @@
 package org.insight_centre.uri.factory;
 
-import java.util.List;
+import java.util.Set;
 
 public class URIDereference extends URIManipulator{
 
-	public static List<String> getDereferencedURI(List<String> lstOfURIs){
+	public static Set<String> getDereferencedURI(Set<String> lstOfURIs){
 	
-			uriDereferencer(lstOfURIs);
+			
 		
-		return null;
+		return uriDereferencer(lstOfURIs);
 	}
 	
 	

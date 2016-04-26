@@ -2,8 +2,8 @@ package org.insight_centre.start;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import org.apache.commons.validator.routines.UrlValidator;
 import org.insight_centre.datasets.record.fetch.RecordFetcher;
 import org.insight_centre.uri.factory.URIDereference;
 import org.insight_centre.uri.factory.URIValidator;
@@ -22,17 +22,22 @@ static List<String> endpointLst= new ArrayList<String>();
 	
 	public static void main(String[] args) {
 		
-		Model datasetMdl= ModelFactory.createDefaultModel();
 		
 		
-		List<String> lstOfClasses=null;
-		List<String> lstOfSPO_URi= null;
+		
+		Set<String> lstOfClasses=null;
+		Set<String> lstOfSPO_URi= null;
 			
 		for(String endp: endpointLst){
 		
-			lstOfClasses=workOnClasses(endp);
+			Model datasetMdl= ModelFactory.createDefaultModel();
 			
-			lstOfSPO_URi=workOnInstances(endp, lstOfClasses);
+			RecordFetcher recordFetcher= new RecordFetcher();
+			
+			recordFetcher.queryAndGenerateRDF(endp,datasetMdl);
+			//lstOfClasses=manipulateClasses(endp);
+			
+			//lstOfSPO_URi=manipulateInstances(endp, lstOfClasses);
 			
 			
 			
@@ -40,11 +45,11 @@ static List<String> endpointLst= new ArrayList<String>();
 
 	}
 	
-	private static List<String> workOnClasses( String endp){
+	private static Set<String> manipulateClasses( String endp){
 		
 		RecordFetcher recordFetcher = new RecordFetcher();
 
-		List<String> classList = null;
+		Set<String> classList = null;
 		
 		// get the classes of the particular endpoint
 		classList = recordFetcher.getClasses(endp);
@@ -57,22 +62,22 @@ static List<String> endpointLst= new ArrayList<String>();
 		return classList;
 	}
 	
-	private static List<String> workOnInstances( String endp, List<String> lstOfClassees){
+	private static Set<String> manipulateInstances( String endp, Set<String> lstOfClassees){
 		
 		RecordFetcher recordFetcher = new RecordFetcher();
 
-		List<String>lstOfInstacnes = null;
+		Set<String>setOfInstacnes = null;
 		
 		for(String clazz:lstOfClassees){
-			lstOfInstacnes=recordFetcher.getClassInstances(endp, clazz);
+			setOfInstacnes=recordFetcher.getClassInstances(endp, clazz);
 			
 		}
 		// validate the uris
-		URIValidator.uriValidator(lstOfInstacnes);
+		URIValidator.uriValidator(setOfInstacnes);
 		// dereference the class uri
-		URIDereference.uriDereferencer(lstOfInstacnes);
+		URIDereference.uriDereferencer(setOfInstacnes);
 			
-		return lstOfInstacnes;
+		return setOfInstacnes;
 	}
 
 	
