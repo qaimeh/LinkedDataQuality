@@ -31,10 +31,13 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 	public void queryAndGenerateRDF(String endp, Model mdl) {
 		
 		Set<String> derefURISet= new HashSet<String>();
+		Set<String> validURISet= new HashSet<String>();
+		
 		// create the dataset resource with the LDQ vocab as prefix used
 		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
 		// create the the hasQualityProile URI as new resource 
 		Resource qualityProfile= null;
+		Resource qualityProfileDeref= null;
 		try {
 			String currentTime= LDQUtils.getCurrentTime();
 			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
@@ -45,21 +48,37 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 			
 			// use the hasQualityProfile resoruce of the dataset as new resource
 			
-			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(currentTime,
 					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"));
 			
 			
-			// get the set of dereferenced URIs
+			// get the set of dereferenced URIs for future work this time only the size is required
 			derefURISet=URIDereference.getDereferencedURI(getAllResources(endp));
 		
-			for(String derefUri: derefURISet){
+			if(derefURISet.size()>0){
+			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash()).concat("totalDereferenceableURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(derefURISet.size()))));
+			
+			qualityProfileDeref=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash())
+					.concat("totalDereferenceableURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(derefURISet.size())));
+			
+			qualityProfileDeref.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(currentTime,
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+					.addProperty(VocabLDQ.hasName, "Total Dereferenceable URIs")
+					.addProperty(VocabLDQ.hasCategory, "Completeness")
+					.addProperty(VocabLDQ.hasCategory, "accuracy")
+					.addProperty(VocabLDQ.hasType, "Info")
+					.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)");
 				
-				System.err.println(derefUri);
 			}
+
+			
 		
-				} catch (Exception e) {
+		} catch (Exception e) {
 			_log.error("exception {}", e.getCause());
 		}
+		
 		mdl.write(System.out,"RDF/XML");
 		
 	}
@@ -70,7 +89,7 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 		Set<String> setOfUri=  new HashSet<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct * {?s ?p ?o} limit 1000";
+		String qryStr= "select distinct * {?s ?p ?o} limit 500";
 		
 		qryExec= execQueries(endp, qryStr);
 		

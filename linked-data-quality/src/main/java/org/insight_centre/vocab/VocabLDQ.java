@@ -24,19 +24,23 @@ public class VocabLDQ {
     /** <p>The namespace of the vocabulary as a resource</p> */
     public static final Resource NAMESPACE = m_model.createResource( NS );
     
-    public static final Property hasQualityProfile = m_model.createProperty( "http://vocab.deri.ie/ldq#hasQualityProfile" );
+    public static final Property hasQualityProfile = m_model.createProperty( NS_Hash_Prp(NS,"hasQualityProfile"));
     
-    public static final Property qualityProfile = m_model.createProperty( "http://vocab.deri.ie/ldq#qualityProfile" );
+    public static final Property qualityProfile = m_model.createProperty( NS_Hash_Prp(NS,"qualityProfile"));
     
-    public static final Property contains = m_model.createProperty( "http://vocab.deri.ie/ldq#contains" );
+    public static final Property contains = m_model.createProperty( NS_Hash_Prp(NS,"contains"));
     
-    public static final Property isGeneratedAt = m_model.createProperty( "http://vocab.deri.ie/ldq#isGeneratedAt" );
+    public static final Property isGeneratedAt = m_model.createProperty( NS_Hash_Prp(NS,"isGeneratedAt"));
     
-    public static final Property language = m_model.createProperty( "http://vocab.deri.ie/ldq#language" );
+    public static final Property totalDereferenceableURIs = m_model.createProperty( NS_Hash_Prp(NS,"totalDereferenceableURIs"));
     
-    public static final Property query = m_model.createProperty( "http://vocab.deri.ie/ldq#query" );
-    
-    public static final Property responseCode = m_model.createProperty( "http://vocab.deri.ie/ldq#responseCode" );
+    public static final Property evaluatedAt = m_model.createProperty( NS_Hash_Prp(NS,"evaluatedAt"));
+    public static final Property hasName = m_model.createProperty( NS_Hash_Prp(NS,"hasName"));
+    public static final Property hasCategory = m_model.createProperty( NS_Hash_Prp(NS,"hasCategory"));
+    public static final Property hasType = m_model.createProperty( NS_Hash_Prp(NS,"hasType"));
+    public static final Property hasValue = m_model.createProperty( NS_Hash_Prp(NS,"hasValue"));
+    public static final Property hasQualityMetric = m_model.createProperty( NS_Hash_Prp(NS,"hasQualityMetric"));
+    /*public static final Property responseCode = m_model.createProperty( "http://vocab.deri.ie/ldq#responseCode" );
     
     public static final Property responseHeader = m_model.createProperty( "http://vocab.deri.ie/ldq#responseHeader" );
     
@@ -48,7 +52,7 @@ public class VocabLDQ {
     
     public static final Resource QueryRun = m_model.createResource( "http://vocab.deri.ie/ldq#QueryRun" );
     
-    
+   */ 
     /** <p>RDFS namespace</p> */ 
     public static final Property RDFS = m_model.createProperty("http://www.w3.org/2000/01/rdf-schema#label");
     
