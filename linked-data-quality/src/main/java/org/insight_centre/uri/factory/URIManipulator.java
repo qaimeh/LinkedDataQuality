@@ -53,13 +53,28 @@ public abstract class URIManipulator {
 	}
 	
 	
-	public static void uriValidator (Set<String> URIstr){
+	public static Set<String> uriValidator (Set<String> URIstr){
 	
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+	    Future<String> validURIVar;
 	     
+	    Set<String> validURIs= new HashSet<String>();
+	    
 		for (String url:URIstr) {
-            Runnable worker = new URIValidatorRunnable(url);
-            executor.execute(worker);
+            validURIVar= executor.submit(new URIValidatorCallable(url));
+            
+            try {
+            	// add the valid URI into set
+            	if(!validURIVar.get().equals(""))
+            	validURIs.add(validURIVar.get());
+				
+			} catch (InterruptedException e) {
+				_log.error(" thread interrupted exception {}", e.getCause());
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				_log.error("thread execution exception {}", e.getCause());
+			}
+
         }
         executor.shutdown();
         
@@ -69,31 +84,35 @@ public abstract class URIManipulator {
         }
         System.out.println("\nFinished all threads");
 		
+        return validURIs;
 		
 	}
 	
-	public static class URIValidatorRunnable implements Runnable{
+	public static class URIValidatorCallable implements Callable<String>{
 
 		private final String url;
 		
-		URIValidatorRunnable(String url) {
+		URIValidatorCallable(String url) {
 			this.url= url;
 		}
-		public void run() {
-					
+
+		public String call() throws Exception {
+
 			boolean checkValidity;
-			UrlValidator validator= new UrlValidator();
-			
-			checkValidity=validator.isValid(url);
-			
-			if(checkValidity){
+			UrlValidator validator = new UrlValidator();
+
+			checkValidity = validator.isValid(url);
+
+			if (checkValidity) {
 				System.out.println("uri is valid");
-			}else{
+				return url;
+			} else {
 				System.err.println("uri is not valid");
+				return "";
 			}
 			
 		}
-		
+
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.insight_centre.uri.factory.URIDereference;
+import org.insight_centre.uri.factory.URIValidator;
 import org.insight_centre.util.LDQUtils;
 import org.insight_centre.vocab.VocabLDQ;
 import org.insight_centre.vocab.Void;
@@ -30,14 +31,18 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 	
 	public void queryAndGenerateRDF(String endp, Model mdl) {
 		
-		Set<String> derefURISet= new HashSet<String>();
-		Set<String> validURISet= new HashSet<String>();
+		Set<String> derefURISet;
+		Set<String> validURISet;
+		
+		// get the total resources of the given dataset to do further processing 
+		Set<String> allResources= getAllResources(endp);
 		
 		// create the dataset resource with the LDQ vocab as prefix used
 		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
 		// create the the hasQualityProile URI as new resource 
 		Resource qualityProfile= null;
 		Resource qualityProfileDeref= null;
+		Resource qualityProfileValidURis= null;
 		try {
 			String currentTime= LDQUtils.getCurrentTime();
 			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
@@ -53,7 +58,7 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 			
 			
 			// get the set of dereferenced URIs for future work this time only the size is required
-			derefURISet=URIDereference.getDereferencedURI(getAllResources(endp));
+			derefURISet=URIDereference.getDereferencedURI(allResources);
 		
 			if(derefURISet.size()>0){
 			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
@@ -69,10 +74,32 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 					.addProperty(VocabLDQ.hasCategory, "Completeness")
 					.addProperty(VocabLDQ.hasCategory, "accuracy")
 					.addProperty(VocabLDQ.hasType, "Info")
-					.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)");
+					.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)")
+					.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Float(LDQUtils.calcPercentage(derefURISet.size(),allResources.size()))));
 				
 			}
 
+			// get size of  the  valid uri's 
+			validURISet = URIValidator.getValidatedURIs(allResources);
+			
+			if(validURISet.size()>0){
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("totalValidURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(validURISet.size()))));
+				
+				qualityProfileValidURis=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("totalValidURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(validURISet.size())));
+				
+				qualityProfileValidURis.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(currentTime,
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Total valid URIs")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "QOI")
+						.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Float(LDQUtils.calcPercentage(validURISet.size(),allResources.size()))));
+					
+				}
 			
 		
 		} catch (Exception e) {
@@ -80,6 +107,8 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 		}
 		
 		mdl.write(System.out,"RDF/XML");
+		
+
 		
 	}
 	

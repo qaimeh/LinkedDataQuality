@@ -10,6 +10,13 @@ import com.hp.hpl.jena.sparql.util.DateTimeStruct.DateTimeParseException;
 public class LDQUtils {
 
 	
+	public static float calcPercentage(int obtainedValues, int totalValues){
+		
+		float percentage=0;
+		percentage=(obtainedValues * 100/ totalValues);
+		
+		return  percentage;
+	}
 	
 	/*
 	 * get current time of the system in GMT 
