@@ -40,6 +40,9 @@ public class VocabLDQ {
     public static final Property hasType = m_model.createProperty( NS_Hash_Prp(NS,"hasType"));
     public static final Property hasValue = m_model.createProperty( NS_Hash_Prp(NS,"hasValue"));
     public static final Property hasQualityMetric = m_model.createProperty( NS_Hash_Prp(NS,"hasQualityMetric"));
+    
+    public static final Property totalResources = m_model.createProperty( NS_Hash_Prp(NS,"totalResources"));
+    public static final Property hasTendency = m_model.createProperty( NS_Hash_Prp(NS,"hasTendency"));
     /*public static final Property responseCode = m_model.createProperty( "http://vocab.deri.ie/ldq#responseCode" );
     
     public static final Property responseHeader = m_model.createProperty( "http://vocab.deri.ie/ldq#responseHeader" );

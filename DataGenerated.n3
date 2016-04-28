@@ -1,0 +1,73 @@
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/totalDereferenceableURIs>
+      <http://www.insight-centre.org/LinkedDataQuality#evaluatedAt>
+              "2016-04-28T20:06:12.347+0100"^^<http://www.w3.org/2001/XMLSchema#dateTimeStamp> ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasCategory>
+              "accuracy" , "Completeness" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasName>
+              "Total Dereferenceable URIs" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasQualityMetric>
+              "Number(int)" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasType>
+              "Info" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasValue>
+              "38"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql>
+      <http://rdfs.org/ns/void#sparqlEndpoint>
+              <http://dbpedia.org/sparql> ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasQualityProfile>
+              <http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100> .
+
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100>
+      <http://www.insight-centre.org/LinkedDataQuality#contains>
+              <http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/totalDereferenceableURIs> , <http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/percentageValidURIs> , <http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/percentageDereferenceableURIs> , <http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/totalValidURIs> ;
+      <http://www.insight-centre.org/LinkedDataQuality#isGeneratedAt>
+              "2016-04-28T20:06:06.887+0100"^^<http://www.w3.org/2001/XMLSchema#dateTimeStamp> ;
+      <http://www.insight-centre.org/LinkedDataQuality#totalResources>
+              "235"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/percentageValidURIs>
+      <http://www.insight-centre.org/LinkedDataQuality#evaluatedAt>
+              "2016-04-28T20:06:12.390+0100"^^<http://www.w3.org/2001/XMLSchema#dateTimeStamp> ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasCategory>
+              "accuracy" , "Completeness" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasName>
+              "Percentage of valid URIs" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasQualityMetric>
+              "Percentage(%)" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasTendency>
+              "increase" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasType>
+              "QOI" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasValue>
+              "16.0"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/percentageDereferenceableURIs>
+      <http://www.insight-centre.org/LinkedDataQuality#evaluatedAt>
+              "2016-04-28T20:06:12.347+0100"^^<http://www.w3.org/2001/XMLSchema#dateTimeStamp> ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasCategory>
+              "accuracy" , "Completeness" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasName>
+              "Percentage of Dereferenceable URIs" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasQualityMetric>
+              "Percentage(%)" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasTendency>
+              "increase" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasType>
+              "QOI" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasValue>
+              "16.0"^^<http://www.w3.org/2001/XMLSchema#float> .
+
+<http://www.insight-centre.org/LinkedDataQuality#http://dbpedia.org/sparql/2016-04-28T20:06:06.887+0100/totalValidURIs>
+      <http://www.insight-centre.org/LinkedDataQuality#evaluatedAt>
+              "2016-04-28T20:06:12.389+0100"^^<http://www.w3.org/2001/XMLSchema#dateTimeStamp> ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasCategory>
+              "accuracy" , "Completeness" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasName>
+              "Total valid URIs" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasQualityMetric>
+              "Number(int)" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasType>
+              "Info" ;
+      <http://www.insight-centre.org/LinkedDataQuality#hasValue>
+              "38"^^<http://www.w3.org/2001/XMLSchema#int> .

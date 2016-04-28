@@ -17,7 +17,7 @@ static List<String> endpointLst= new ArrayList<String>();
 	
 	static{
 		endpointLst.add("http://dbpedia.org/sparql");
-		endpointLst.add("http://chebi.bio2rdf.org/sparql");
+		//endpointLst.add("http://chebi.bio2rdf.org/sparql");
 	}
 	
 	

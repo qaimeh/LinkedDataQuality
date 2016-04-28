@@ -1,5 +1,8 @@
 package org.insight_centre.datasets.record.fetch;
 
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,12 +25,16 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.util.FileManager;
 
 
 
 public class RecordFetcher {
 Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 	
+FileWriter out=null;
+
+FileOutputStream outputStream;
 	
 	public void queryAndGenerateRDF(String endp, Model mdl) {
 		
@@ -41,8 +48,10 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
 		// create the the hasQualityProile URI as new resource 
 		Resource qualityProfile= null;
-		Resource qualityProfileDeref= null;
-		Resource qualityProfileValidURis= null;
+		Resource qualityProfileDerefInfo= null;
+		Resource qualityProfileDerefQOI= null;
+		Resource qualityProfileValidURIsInfo= null;
+		Resource qualityProfileValidURIsQOI=null;
 		try {
 			String currentTime= LDQUtils.getCurrentTime();
 			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
@@ -54,7 +63,9 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 			// use the hasQualityProfile resoruce of the dataset as new resource
 			
 			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(currentTime,
-					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"));
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+					.addProperty(VocabLDQ.totalResources, mdl.createTypedLiteral(allResources.size()));
+			
 			
 			
 			// get the set of dereferenced URIs for future work this time only the size is required
@@ -62,19 +73,38 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 		
 			if(derefURISet.size()>0){
 			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
-					.concat(LDQUtils.appendSlash()).concat("totalDereferenceableURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(derefURISet.size()))));
+					.concat(LDQUtils.appendSlash()).concat("totalDereferenceableURIs")));
 			
-			qualityProfileDeref=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+			// dereference Info
+			qualityProfileDerefInfo=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash())
-					.concat("totalDereferenceableURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(derefURISet.size())));
+					.concat("totalDereferenceableURIs"));
 			
-			qualityProfileDeref.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(currentTime,
+			qualityProfileDerefInfo.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
 					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
 					.addProperty(VocabLDQ.hasName, "Total Dereferenceable URIs")
 					.addProperty(VocabLDQ.hasCategory, "Completeness")
 					.addProperty(VocabLDQ.hasCategory, "accuracy")
 					.addProperty(VocabLDQ.hasType, "Info")
+					.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+					.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(derefURISet.size())));
+			
+			// dereference QOI
+			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash()).concat("percentageDereferenceableURIs")));
+			
+			qualityProfileDerefQOI=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash())
+					.concat("percentageDereferenceableURIs"));
+			
+			qualityProfileDerefQOI.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+					.addProperty(VocabLDQ.hasName, "Percentage of Dereferenceable URIs")
+					.addProperty(VocabLDQ.hasCategory, "Completeness")
+					.addProperty(VocabLDQ.hasCategory, "accuracy")
+					.addProperty(VocabLDQ.hasType, "QOI")
 					.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)")
+					.addProperty(VocabLDQ.hasTendency, "increase")
 					.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Float(LDQUtils.calcPercentage(derefURISet.size(),allResources.size()))));
 				
 			}
@@ -84,21 +114,43 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 			
 			if(validURISet.size()>0){
 				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
-						.concat(LDQUtils.appendSlash()).concat("totalValidURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(validURISet.size()))));
+						.concat(LDQUtils.appendSlash()).concat("totalValidURIs")));
 				
-				qualityProfileValidURis=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+				
+				// validURIs info
+				qualityProfileValidURIsInfo=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash())
-						.concat("totalValidURIs").concat(LDQUtils.appendSlash()).concat(Integer.toString(validURISet.size())));
+						.concat("totalValidURIs"));
 				
-				qualityProfileValidURis.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(currentTime,
+				qualityProfileValidURIsInfo.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
 						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
 						.addProperty(VocabLDQ.hasName, "Total valid URIs")
 						.addProperty(VocabLDQ.hasCategory, "Completeness")
 						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "Info")
+						.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(validURISet.size())));
+					
+				// valid URIs QOI
+				
+
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("percentageValidURIs")));
+				
+				qualityProfileValidURIsQOI=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("percentageValidURIs"));
+				
+				qualityProfileValidURIsQOI.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Percentage of valid URIs")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
 						.addProperty(VocabLDQ.hasType, "QOI")
 						.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)")
+						.addProperty(VocabLDQ.hasTendency, "increase")
 						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Float(LDQUtils.calcPercentage(validURISet.size(),allResources.size()))));
-					
+				
 				}
 			
 		
@@ -106,7 +158,14 @@ Logger _log= LoggerFactory.getLogger(RecordFetcher.class);
 			_log.error("exception {}", e.getCause());
 		}
 		
-		mdl.write(System.out,"RDF/XML");
+		
+		try {
+			outputStream = new FileOutputStream( "/Users/qaiser/git/LinkedDataQuality/linked-data-quality/src/main/resources/data.n3",true );
+			mdl.write(outputStream,"RDF/XML");
+		} catch (IOException e) {
+			_log.error("IO exception {}", e.getCause());
+		}
+		
 		
 
 		
