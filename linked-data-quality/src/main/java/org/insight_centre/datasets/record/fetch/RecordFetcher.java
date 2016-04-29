@@ -54,10 +54,14 @@ FileOutputStream outputStream;
 		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
 		// create the the hasQualityProile URI as new resource 
 		Resource qualityProfile= null;
+		Resource qualityProfileTotalURIs= null;
+		Resource qualityProfileDateTypeAsStr= null;
+		Resource qualityProfileTotalDateType= null;
 		Resource qualityProfileDerefInfo= null;
 		Resource qualityProfileDerefQOI= null;
 		Resource qualityProfileValidURIsInfo= null;
 		Resource qualityProfileValidURIsQOI=null;
+
 		try {
 			String currentTime= LDQUtils.getCurrentTime();
 			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
@@ -75,13 +79,55 @@ FileOutputStream outputStream;
 			dateTimeSet=getDateTimeStamp(endp, "date");
 			
 			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(currentTime,
-					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
-					.addProperty(VocabLDQ.totalResources, mdl.createTypedLiteral(allResources.size()))
-					.addProperty(VocabLDQ.strDateLiterals, mdl.createTypedLiteral((strDateTimeSet!=null) ? strDateTimeSet.size():0))
-					.addProperty(VocabLDQ.DateTypedLiterals, mdl.createTypedLiteral((dateTimeSet!=null) ? dateTimeSet.size():0));
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"));
+					//.addProperty(VocabLDQ.totalResources, mdl.createTypedLiteral(allResources.size()))
+					//.addProperty(VocabLDQ.strDateLiterals, mdl.createTypedLiteral((strDateTimeSet!=null) ? strDateTimeSet.size():0))
+					//.addProperty(VocabLDQ.DateTypedLiterals, mdl.createTypedLiteral((dateTimeSet!=null) ? dateTimeSet.size():0));
+			
+			// get the total resources/URIs of the dataset
+			if(allResources.size()>0){
+				
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("totalURIs")));
+				
+				// dereference Info
+				qualityProfileTotalURIs=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("totalURIs"));
+				
+				qualityProfileTotalURIs.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Total dateset URIs")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "Info")
+						.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(allResources.size())));
+			}
 			
 			
 			
+			// get the total DateTime as String of the dataset
+						if(strDateTimeSet.size()>0){
+							
+							qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+									.concat(LDQUtils.appendSlash()).concat("totalDateTimeAsString")));
+							
+							// dereference Info
+							qualityProfileDateTypeAsStr=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+									.concat(LDQUtils.appendSlash())
+									.concat("totalDateTimeAsString"));
+							
+							qualityProfileDateTypeAsStr.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+									"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+									.addProperty(VocabLDQ.hasName, "Total DateTime Type as String")
+									.addProperty(VocabLDQ.hasCategory, "Completeness")
+									.addProperty(VocabLDQ.hasCategory, "accuracy")
+									.addProperty(VocabLDQ.hasType, "QOI")
+									.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+									.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(strDateTimeSet.size())));
+						}
+						
 			// get the set of dereferenced URIs for future work this time only the size is required
 			derefURISet=URIDereference.getDereferencedURI(allResources);
 		
