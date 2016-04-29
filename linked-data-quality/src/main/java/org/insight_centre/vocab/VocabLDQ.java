@@ -43,6 +43,8 @@ public class VocabLDQ {
     
     public static final Property totalResources = m_model.createProperty( NS_Hash_Prp(NS,"totalResources"));
     public static final Property hasTendency = m_model.createProperty( NS_Hash_Prp(NS,"hasTendency"));
+    public static final Property strDateLiterals = m_model.createProperty( NS_Hash_Prp(NS,"strDateLiterals"));
+    public static final Property DateTypedLiterals = m_model.createProperty( NS_Hash_Prp(NS,"DateTypedLiterals"));
     /*public static final Property responseCode = m_model.createProperty( "http://vocab.deri.ie/ldq#responseCode" );
     
     public static final Property responseHeader = m_model.createProperty( "http://vocab.deri.ie/ldq#responseHeader" );

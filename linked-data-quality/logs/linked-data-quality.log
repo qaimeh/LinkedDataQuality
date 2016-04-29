@@ -8620,3 +8620,1087 @@
 2016-04-28 20:28:11 ERROR URIManipulator:148 - not a dereferenceable uri #conjugate
 2016-04-28 20:28:11 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedUnionFn
 2016-04-28 20:28:11 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationLowPointFn
+2016-04-29 16:35:15 ERROR RecordFetcher:169 - exception {}
+2016-04-29 16:35:42 ERROR RecordFetcher:169 - exception {}
+com.hp.hpl.jena.query.QueryParseException: Encountered " "(" "( "" at line 1, column 27.
+Was expecting one of:
+    "graph" ...
+    "optional" ...
+    "minus" ...
+    "bind" ...
+    "service" ...
+    "filter" ...
+    "{" ...
+    "}" ...
+    ";" ...
+    "," ...
+    "." ...
+    
+	at com.hp.hpl.jena.sparql.lang.ParserSPARQL11.perform(ParserSPARQL11.java:87)
+	at com.hp.hpl.jena.sparql.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:40)
+	at com.hp.hpl.jena.sparql.lang.Parser.parse(Parser.java:26)
+	at com.hp.hpl.jena.query.QueryFactory.parse(QueryFactory.java:132)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:69)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:40)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:28)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.execQueries(RecordFetcher.java:376)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:195)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+2016-04-29 16:38:08 ERROR RecordFetcher:169 - exception {}
+com.hp.hpl.jena.query.QueryParseException: Line 1, column 44: Unresolved prefixed name: xsd:string
+	at com.hp.hpl.jena.sparql.lang.ParserBase.throwParseException(ParserBase.java:542)
+	at com.hp.hpl.jena.sparql.lang.ParserBase.resolvePName(ParserBase.java:242)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.PrefixedName(SPARQLParser11.java:4513)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.IRIref(SPARQLParser11.java:4497)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.IRIrefOrFunction(SPARQLParser11.java:4299)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.PrimaryExpression(SPARQLParser11.java:3566)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.UnaryExpression(SPARQLParser11.java:3492)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.MultiplicativeExpression(SPARQLParser11.java:3363)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.AdditiveExpression(SPARQLParser11.java:3265)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.NumericExpression(SPARQLParser11.java:3258)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.RelationalExpression(SPARQLParser11.java:3203)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.ValueLogical(SPARQLParser11.java:3183)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.ConditionalAndExpression(SPARQLParser11.java:3162)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.ConditionalOrExpression(SPARQLParser11.java:3141)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.Expression(SPARQLParser11.java:3134)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.BrackettedExpression(SPARQLParser11.java:3619)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.Constraint(SPARQLParser11.java:2038)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.Filter(SPARQLParser11.java:2029)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.GraphPatternNotTriples(SPARQLParser11.java:1920)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.GroupGraphPatternSub(SPARQLParser11.java:1784)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.GroupGraphPattern(SPARQLParser11.java:1722)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.WhereClause(SPARQLParser11.java:431)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.SelectQuery(SPARQLParser11.java:122)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.Query(SPARQLParser11.java:38)
+	at com.hp.hpl.jena.sparql.lang.sparql_11.SPARQLParser11.QueryUnit(SPARQLParser11.java:29)
+	at com.hp.hpl.jena.sparql.lang.ParserSPARQL11$1.exec(ParserSPARQL11.java:36)
+	at com.hp.hpl.jena.sparql.lang.ParserSPARQL11.perform(ParserSPARQL11.java:83)
+	at com.hp.hpl.jena.sparql.lang.ParserSPARQL11.parse$(ParserSPARQL11.java:40)
+	at com.hp.hpl.jena.sparql.lang.Parser.parse(Parser.java:26)
+	at com.hp.hpl.jena.query.QueryFactory.parse(QueryFactory.java:132)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:69)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:40)
+	at com.hp.hpl.jena.query.QueryFactory.create(QueryFactory.java:28)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.execQueries(RecordFetcher.java:376)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:195)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+2016-04-29 16:42:14 ERROR RecordFetcher:169 - exception {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:198)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 16:52:47 ERROR RecordFetcher:169 - exception {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:198)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 16:58:37 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:01:10 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:72)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:01:22 ERROR RecordFetcher:169 - exception {}
+java.lang.NullPointerException
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:77)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+2016-04-29 17:03:00 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:05:00 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:72)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:05:17 ERROR RecordFetcher:169 - exception {}
+java.lang.NullPointerException
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:77)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+2016-04-29 17:08:06 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:10:06 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:72)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:14:41 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:70)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:16:42 ERROR RecordFetcher:211 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:199)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:72)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:30:36 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:73)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:32:37 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:75)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeShelfAreaFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeContiguousZoneFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #ProbabilityFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFamilyFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #brother
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #multiplicativeFactor
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #DatumFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #before
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsTemporally
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #FrontFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #ExtensionFn
+2016-04-29 17:32:37 ERROR URIManipulator:148 - not a dereferenceable uri #UnitFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #PortFacilityFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #flows
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #InitialProfileFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #MemberFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #PastFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #FloorFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #verb-group
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #ExclusiveFishingZoneFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #RegionalLawFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #DescendantsFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #coordinates
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #InitialNodeFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediatePastFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #CenterOfCircleFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #legalRelation
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #geometricPart
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #WhenFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #LegislatureFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #BeginFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #SquareUnitFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #ExtendedFishingZoneFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #SeacoastFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #part
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #equal
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #StartFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #coworker
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #AvailableForMilitaryServiceMaleFn
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #geographicSubregion
+2016-04-29 17:32:38 ERROR URIManipulator:148 - not a dereferenceable uri #GovernmentFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #copy
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #DenominatorFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #relatedInternalConcept
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #EndNodeFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #beforeOrEqual
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #ElectionFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeExclusiveEconomicZoneFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #BackFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #abstractPart
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #mutualStranger
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #FiscalYearFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #lessThanOrEqualTo
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #PopulationFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #StartupFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #ShipCrewFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #CosineFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #JudiciaryFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #SineFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #NanoFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #ShipRegisterFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #spouse
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #LastFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #familyRelation
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #WealthFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #ancestorOrganization
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #AbstractionFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #ancestor
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #FirstFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #CurrencyFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #YearFn
+2016-04-29 17:32:39 ERROR URIManipulator:148 - not a dereferenceable uri #TransitFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #developmentalForm
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #initialList
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #AgreementOrganizationFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFutureFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #domesticPartner
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #oppositeDirection
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #CabinetFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationHighPointFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #finishes
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #PowerSetFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #DocumentFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #earlier
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #during
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #MicroFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #OverseasAreaFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #MagnitudeFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #MaleToFemaleRatioFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #MegaFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #sibling
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #ShortageFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #PathWeightFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #relatedEvent
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #StopFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #NumeratorFn
+2016-04-29 17:32:40 ERROR URIManipulator:148 - not a dereferenceable uri #RadiusFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #RoundFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #ListLengthFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #AbsoluteValueFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #MerchantMarineFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #OccupationFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #SquareRootFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThan
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #VotingFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #diplomaticRelations
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #RealNumberFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #StringLengthFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #PerimeterAreaFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #EndFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #CeilingFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #ShipBerthingFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #TangentFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #RationalNumberFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #geopoliticalSubdivision
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #cooccur
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #FoodForFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #mutualAcquaintance
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentInstance
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #CardinalityFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #TripFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #HoleSkinFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #ShutdownFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #crosses
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #meronym
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #DiameterFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #TerritorialSeaFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #ReciprocalFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentClass
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #SuccessorFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #similar-to
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #AgricultureFn
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #neighbor
+2016-04-29 17:32:41 ERROR URIManipulator:148 - not a dereferenceable uri #ResidentFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #friend
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #dependentGeopoliticalArea
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #derivationally-related
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #OuterBoundaryFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #DeadFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #BeliefGroupMemberFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #FitForMilitaryServiceMaleFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #PremisesFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #OperatingFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #AddressFn
+2016-04-29 17:32:42 ERROR URIManipulator:148 - not a dereferenceable uri #enemy
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeClaimsTerritorialSeaFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #larger
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThanOrEqualTo
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #ImaginaryPartFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #relative
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #FlowFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedIntersectionFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #TeraFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #InnerBoundaryFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #cohabitant
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #located
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #inverse
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #consistent
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #antonym
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #HoleHostFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #connectedEngineeringComponents
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsPartially
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #IntegerSquareRootFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #MilliFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #CutSetFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #ConstitutionFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #PicoFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #meetsSpatially
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #precondition
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #identicalListItems
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsSpatially
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #FutureFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #FlowRegionFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #independentProbability
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #interiorPart
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #PredecessorFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #SupremeCourtFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #BeginNodeFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #ReceivingAnObjectFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #TerminalNodeFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #MinimalCutSetFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #PropertyFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #SignumFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #TransportationFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #disjoint
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #GigaFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #AccountFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #ComplementFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #KiloFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #AgentOfOrganismFn
+2016-04-29 17:32:43 ERROR URIManipulator:148 - not a dereferenceable uri #ExecutiveBranchFn
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #lessThan
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #GeographicCenterFn
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #connected
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #conjugate
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedUnionFn
+2016-04-29 17:32:44 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationLowPointFn
+2016-04-29 17:35:26 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:73)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:37:27 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:75)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeShelfAreaFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeContiguousZoneFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #ProbabilityFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFamilyFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #brother
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #multiplicativeFactor
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #DatumFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #before
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsTemporally
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #FrontFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #ExtensionFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #UnitFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #PortFacilityFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #flows
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #InitialProfileFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #MemberFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #PastFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #FloorFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #verb-group
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #ExclusiveFishingZoneFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #RegionalLawFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #DescendantsFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #coordinates
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #InitialNodeFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediatePastFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #CenterOfCircleFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #legalRelation
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #geometricPart
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #WhenFn
+2016-04-29 17:37:27 ERROR URIManipulator:148 - not a dereferenceable uri #LegislatureFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #BeginFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #SquareUnitFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #ExtendedFishingZoneFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #SeacoastFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #part
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #equal
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #StartFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #coworker
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #AvailableForMilitaryServiceMaleFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #geographicSubregion
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #GovernmentFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #copy
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #DenominatorFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #relatedInternalConcept
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #EndNodeFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #beforeOrEqual
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #ElectionFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeExclusiveEconomicZoneFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #BackFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #abstractPart
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #mutualStranger
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #FiscalYearFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #lessThanOrEqualTo
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #PopulationFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #StartupFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #ShipCrewFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #CosineFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #JudiciaryFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #SineFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #NanoFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #ShipRegisterFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #spouse
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #LastFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #familyRelation
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #WealthFn
+2016-04-29 17:37:28 ERROR URIManipulator:148 - not a dereferenceable uri #ancestorOrganization
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #AbstractionFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #ancestor
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #FirstFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #CurrencyFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #YearFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #TransitFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #developmentalForm
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #initialList
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #AgreementOrganizationFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFutureFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #domesticPartner
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #oppositeDirection
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #CabinetFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationHighPointFn
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #finishes
+2016-04-29 17:37:29 ERROR URIManipulator:148 - not a dereferenceable uri #PowerSetFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #DocumentFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #earlier
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #during
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #MicroFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #OverseasAreaFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #MagnitudeFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #MaleToFemaleRatioFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #MegaFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #sibling
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #ShortageFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #PathWeightFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #relatedEvent
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #StopFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #NumeratorFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #RadiusFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #RoundFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #ListLengthFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #AbsoluteValueFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #MerchantMarineFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #OccupationFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #SquareRootFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThan
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #VotingFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #diplomaticRelations
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #RealNumberFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #StringLengthFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #PerimeterAreaFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #EndFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #CeilingFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #ShipBerthingFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #TangentFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #RationalNumberFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #geopoliticalSubdivision
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #cooccur
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #FoodForFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #mutualAcquaintance
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentInstance
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #CardinalityFn
+2016-04-29 17:37:30 ERROR URIManipulator:148 - not a dereferenceable uri #TripFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #HoleSkinFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #ShutdownFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #crosses
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #meronym
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #DiameterFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #TerritorialSeaFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #ReciprocalFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentClass
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #SuccessorFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #similar-to
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #AgricultureFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #neighbor
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #ResidentFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #friend
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #dependentGeopoliticalArea
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #derivationally-related
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #OuterBoundaryFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #DeadFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #BeliefGroupMemberFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #FitForMilitaryServiceMaleFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #PremisesFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #OperatingFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #AddressFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #enemy
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeClaimsTerritorialSeaFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #larger
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThanOrEqualTo
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #ImaginaryPartFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #relative
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #FlowFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedIntersectionFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #TeraFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #InnerBoundaryFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #cohabitant
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #located
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #inverse
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #consistent
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #antonym
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #HoleHostFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #connectedEngineeringComponents
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsPartially
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #IntegerSquareRootFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #MilliFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #CutSetFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #ConstitutionFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #PicoFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #meetsSpatially
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #precondition
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #identicalListItems
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsSpatially
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #FutureFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #FlowRegionFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #independentProbability
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #interiorPart
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #PredecessorFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #SupremeCourtFn
+2016-04-29 17:37:31 ERROR URIManipulator:148 - not a dereferenceable uri #BeginNodeFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #ReceivingAnObjectFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #TerminalNodeFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #MinimalCutSetFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #PropertyFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #SignumFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #TransportationFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #disjoint
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #GigaFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #AccountFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #ComplementFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #KiloFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #AgentOfOrganismFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #ExecutiveBranchFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #lessThan
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #GeographicCenterFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #connected
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #conjugate
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedUnionFn
+2016-04-29 17:37:32 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationLowPointFn
+2016-04-29 17:43:07 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:73)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:45:09 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:75)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeShelfAreaFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeContiguousZoneFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ProbabilityFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFamilyFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #brother
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #multiplicativeFactor
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #DatumFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #before
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsTemporally
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #FrontFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ExtensionFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #UnitFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #PortFacilityFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #flows
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #InitialProfileFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #MemberFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #PastFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #FloorFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #verb-group
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ExclusiveFishingZoneFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #RegionalLawFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #DescendantsFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #coordinates
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #InitialNodeFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediatePastFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #CenterOfCircleFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #legalRelation
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #geometricPart
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #WhenFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #LegislatureFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #BeginFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #SquareUnitFn
+2016-04-29 17:45:09 ERROR URIManipulator:148 - not a dereferenceable uri #ExtendedFishingZoneFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #SeacoastFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #part
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #equal
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #StartFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #coworker
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #AvailableForMilitaryServiceMaleFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #geographicSubregion
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #GovernmentFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #copy
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #DenominatorFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #relatedInternalConcept
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #EndNodeFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #beforeOrEqual
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #ElectionFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeExclusiveEconomicZoneFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #BackFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #abstractPart
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #mutualStranger
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #FiscalYearFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #lessThanOrEqualTo
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #PopulationFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #StartupFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #ShipCrewFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #CosineFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #JudiciaryFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #SineFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #NanoFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #ShipRegisterFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #spouse
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #LastFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #familyRelation
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #WealthFn
+2016-04-29 17:45:10 ERROR URIManipulator:148 - not a dereferenceable uri #ancestorOrganization
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #AbstractionFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #ancestor
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #FirstFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #CurrencyFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #YearFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #TransitFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #developmentalForm
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #initialList
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #AgreementOrganizationFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFutureFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #domesticPartner
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #oppositeDirection
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #CabinetFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationHighPointFn
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #finishes
+2016-04-29 17:45:11 ERROR URIManipulator:148 - not a dereferenceable uri #PowerSetFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #DocumentFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #earlier
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #during
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #MicroFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #OverseasAreaFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #MagnitudeFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #MaleToFemaleRatioFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #MegaFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #sibling
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #ShortageFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #PathWeightFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #relatedEvent
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #StopFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #NumeratorFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #RadiusFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #RoundFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #ListLengthFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #AbsoluteValueFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #MerchantMarineFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #OccupationFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #SquareRootFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThan
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #VotingFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #diplomaticRelations
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #RealNumberFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #StringLengthFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #PerimeterAreaFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #EndFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #CeilingFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #ShipBerthingFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #TangentFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #RationalNumberFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #geopoliticalSubdivision
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #cooccur
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #FoodForFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #mutualAcquaintance
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentInstance
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #CardinalityFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #TripFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #HoleSkinFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #ShutdownFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #crosses
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #meronym
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #DiameterFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #TerritorialSeaFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #ReciprocalFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentClass
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #SuccessorFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #similar-to
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #AgricultureFn
+2016-04-29 17:45:12 ERROR URIManipulator:148 - not a dereferenceable uri #neighbor
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #ResidentFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #friend
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #dependentGeopoliticalArea
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #derivationally-related
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #OuterBoundaryFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #DeadFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #BeliefGroupMemberFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #FitForMilitaryServiceMaleFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #PremisesFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #OperatingFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #AddressFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #enemy
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeClaimsTerritorialSeaFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #larger
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThanOrEqualTo
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #ImaginaryPartFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #relative
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #FlowFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedIntersectionFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #TeraFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #InnerBoundaryFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #cohabitant
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #located
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #inverse
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #consistent
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #antonym
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #HoleHostFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #connectedEngineeringComponents
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsPartially
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #IntegerSquareRootFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #MilliFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #CutSetFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #ConstitutionFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #PicoFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #meetsSpatially
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #precondition
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #identicalListItems
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsSpatially
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #FutureFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #FlowRegionFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #independentProbability
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #interiorPart
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #PredecessorFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #SupremeCourtFn
+2016-04-29 17:45:13 ERROR URIManipulator:148 - not a dereferenceable uri #BeginNodeFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #ReceivingAnObjectFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #TerminalNodeFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #MinimalCutSetFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #PropertyFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #SignumFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #TransportationFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #disjoint
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #GigaFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #AccountFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #ComplementFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #KiloFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #AgentOfOrganismFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #ExecutiveBranchFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #lessThan
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #GeographicCenterFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #connected
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #conjugate
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedUnionFn
+2016-04-29 17:45:14 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationLowPointFn
+2016-04-29 17:49:08 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:73)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:51:10 ERROR RecordFetcher:225 - exception: {}
+HttpException: HttpException: 500 SPARQL Request Failed: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:350)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execGet(HttpQuery.java:189)
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.exec(HttpQuery.java:144)
+	at com.hp.hpl.jena.sparql.engine.http.QueryEngineHTTP.execSelect(QueryEngineHTTP.java:141)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.getDateTimeStamp(RecordFetcher.java:213)
+	at org.insight_centre.datasets.record.fetch.RecordFetcher.queryAndGenerateRDF(RecordFetcher.java:75)
+	at org.insight_centre.start.LinkDataQltyMain.main(LinkDataQltyMain.java:38)
+Caused by: HttpException: 500 SPARQL Request Failed
+	at com.hp.hpl.jena.sparql.engine.http.HttpQuery.execCommon(HttpQuery.java:299)
+	... 6 more
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeShelfAreaFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeContiguousZoneFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #ProbabilityFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFamilyFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #brother
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #multiplicativeFactor
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #DatumFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #before
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsTemporally
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #FrontFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #ExtensionFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #UnitFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #PortFacilityFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #flows
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #InitialProfileFn
+2016-04-29 17:51:10 ERROR URIManipulator:148 - not a dereferenceable uri #MemberFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #PastFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #FloorFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #verb-group
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ExclusiveFishingZoneFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #RegionalLawFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #DescendantsFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #coordinates
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #InitialNodeFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediatePastFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #CenterOfCircleFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #legalRelation
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #geometricPart
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #WhenFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #LegislatureFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #BeginFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #SquareUnitFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ExtendedFishingZoneFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #SeacoastFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #part
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #equal
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #StartFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #coworker
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #AvailableForMilitaryServiceMaleFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #geographicSubregion
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #GovernmentFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #copy
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #DenominatorFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #relatedInternalConcept
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #EndNodeFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #beforeOrEqual
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ElectionFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeExclusiveEconomicZoneFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #BackFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #abstractPart
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #mutualStranger
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #FiscalYearFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #lessThanOrEqualTo
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #PopulationFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #StartupFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ShipCrewFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #CosineFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #JudiciaryFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #SineFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #NanoFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ShipRegisterFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #spouse
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #LastFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #familyRelation
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #WealthFn
+2016-04-29 17:51:11 ERROR URIManipulator:148 - not a dereferenceable uri #ancestorOrganization
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #AbstractionFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #ancestor
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #FirstFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #CurrencyFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #YearFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #TransitFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #developmentalForm
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #initialList
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #AgreementOrganizationFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #ImmediateFutureFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #domesticPartner
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #oppositeDirection
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #CabinetFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationHighPointFn
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #finishes
+2016-04-29 17:51:12 ERROR URIManipulator:148 - not a dereferenceable uri #PowerSetFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #DocumentFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #earlier
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #during
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #MicroFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #OverseasAreaFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #MagnitudeFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #MaleToFemaleRatioFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #MegaFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #sibling
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #ShortageFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #PathWeightFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #relatedEvent
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #StopFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #NumeratorFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #RadiusFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #RoundFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #ListLengthFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #AbsoluteValueFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #MerchantMarineFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #OccupationFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #SquareRootFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThan
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #VotingFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #diplomaticRelations
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #RealNumberFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #StringLengthFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #PerimeterAreaFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #EndFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #CeilingFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #ShipBerthingFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #TangentFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #RationalNumberFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #geopoliticalSubdivision
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #cooccur
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #FoodForFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #mutualAcquaintance
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentInstance
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #CardinalityFn
+2016-04-29 17:51:13 ERROR URIManipulator:148 - not a dereferenceable uri #TripFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #HoleSkinFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #ShutdownFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #crosses
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #meronym
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #DiameterFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #TerritorialSeaFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #ReciprocalFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #equivalentContentClass
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #SuccessorFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #similar-to
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #AgricultureFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #neighbor
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #ResidentFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #friend
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #dependentGeopoliticalArea
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #derivationally-related
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #OuterBoundaryFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #DeadFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #BeliefGroupMemberFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #FitForMilitaryServiceMaleFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #PremisesFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #OperatingFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #AddressFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #enemy
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #MaritimeClaimsTerritorialSeaFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #larger
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #greaterThanOrEqualTo
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #ImaginaryPartFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #relative
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #FlowFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedIntersectionFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #TeraFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #InnerBoundaryFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #cohabitant
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #located
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #inverse
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #consistent
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #antonym
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #HoleHostFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #connectedEngineeringComponents
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsPartially
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #IntegerSquareRootFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #MilliFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #CutSetFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #ConstitutionFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #PicoFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #meetsSpatially
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #precondition
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #identicalListItems
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #overlapsSpatially
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #FutureFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #FlowRegionFn
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #independentProbability
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #interiorPart
+2016-04-29 17:51:14 ERROR URIManipulator:148 - not a dereferenceable uri #PredecessorFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #SupremeCourtFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #BeginNodeFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #ReceivingAnObjectFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #TerminalNodeFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #MinimalCutSetFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #PropertyFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #SignumFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #TransportationFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #disjoint
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #GigaFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #AccountFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #ComplementFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #KiloFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #AgentOfOrganismFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #ExecutiveBranchFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #lessThan
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #GeographicCenterFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #connected
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #conjugate
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #GeneralizedUnionFn
+2016-04-29 17:51:15 ERROR URIManipulator:148 - not a dereferenceable uri #ElevationLowPointFn
+2016-04-29 18:11:41 ERROR URIManipulator:148 - not a dereferenceable uri http://www-tori.jaist.ac.jp:8000/NLPIX2008/index.html
+2016-04-29 18:12:13 ERROR URIManipulator:148 - not a dereferenceable uri mailto:pierre-edouard.portier@insa-lyon.fr
+2016-04-29 18:18:43 ERROR URIManipulator:148 - not a dereferenceable uri -520230bb:1546306e1c8:-7ffc
+2016-04-29 18:18:43 ERROR URIManipulator:148 - not a dereferenceable uri -520230bb:1546306e1c8:-7ffd
+2016-04-29 18:18:43 ERROR URIManipulator:148 - not a dereferenceable uri -520230bb:1546306e1c8:-7ffe
+2016-04-29 18:18:43 ERROR URIManipulator:148 - not a dereferenceable uri -520230bb:1546306e1c8:-7fff

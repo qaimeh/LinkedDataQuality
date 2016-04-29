@@ -3,12 +3,15 @@ package org.insight_centre.datasets.record.fetch;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.insight_centre.uri.factory.URIDereference;
+import org.insight_centre.uri.factory.URIManipulator;
 import org.insight_centre.uri.factory.URIValidator;
 import org.insight_centre.util.LDQUtils;
 import org.insight_centre.vocab.VocabLDQ;
@@ -40,9 +43,12 @@ FileOutputStream outputStream;
 		
 		Set<String> derefURISet;
 		Set<String> validURISet;
+		Set<String> strDateTimeSet;
+		Set<String> dateTimeSet;
 		
 		// get the total resources of the given dataset to do further processing 
 		Set<String> allResources= getAllResources(endp);
+		
 		
 		// create the dataset resource with the LDQ vocab as prefix used
 		Resource endpResource=mdl.createProperty(VocabLDQ.NS,endp).asResource();
@@ -56,15 +62,23 @@ FileOutputStream outputStream;
 			String currentTime= LDQUtils.getCurrentTime();
 			endpResource.addProperty(Void.sparqlEndpoint, mdl.createResource(endp))
 			.addProperty(VocabLDQ.hasQualityProfile,
-					mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)));
+					mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)));
 			// create a dataset property and add into the model					
-			qualityProfile=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime));
+			qualityProfile=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime));
 			
 			// use the hasQualityProfile resoruce of the dataset as new resource
 			
+			// get the set of DateTime values
+			
+			strDateTimeSet=getDateTimeStamp(endp, "string");
+			
+			dateTimeSet=getDateTimeStamp(endp, "date");
+			
 			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(currentTime,
 					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
-					.addProperty(VocabLDQ.totalResources, mdl.createTypedLiteral(allResources.size()));
+					.addProperty(VocabLDQ.totalResources, mdl.createTypedLiteral(allResources.size()))
+					.addProperty(VocabLDQ.strDateLiterals, mdl.createTypedLiteral((strDateTimeSet!=null) ? strDateTimeSet.size():0))
+					.addProperty(VocabLDQ.DateTypedLiterals, mdl.createTypedLiteral((dateTimeSet!=null) ? dateTimeSet.size():0));
 			
 			
 			
@@ -72,11 +86,11 @@ FileOutputStream outputStream;
 			derefURISet=URIDereference.getDereferencedURI(allResources);
 		
 			if(derefURISet.size()>0){
-			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash()).concat("totalDereferenceableURIs")));
 			
 			// dereference Info
-			qualityProfileDerefInfo=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+			qualityProfileDerefInfo=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash())
 					.concat("totalDereferenceableURIs"));
 			
@@ -90,10 +104,10 @@ FileOutputStream outputStream;
 					.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(derefURISet.size())));
 			
 			// dereference QOI
-			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash()).concat("percentageDereferenceableURIs")));
 			
-			qualityProfileDerefQOI=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+			qualityProfileDerefQOI=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash())
 					.concat("percentageDereferenceableURIs"));
 			
@@ -113,12 +127,12 @@ FileOutputStream outputStream;
 			validURISet = URIValidator.getValidatedURIs(allResources);
 			
 			if(validURISet.size()>0){
-				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash()).concat("totalValidURIs")));
 				
 				
 				// validURIs info
-				qualityProfileValidURIsInfo=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+				qualityProfileValidURIsInfo=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash())
 						.concat("totalValidURIs"));
 				
@@ -134,10 +148,10 @@ FileOutputStream outputStream;
 				// valid URIs QOI
 				
 
-				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash()).concat("percentageValidURIs")));
 				
-				qualityProfileValidURIsQOI=mdl.createResource(VocabLDQ.NS.concat(endp.concat(LDQUtils.appendSlash())).concat(currentTime)
+				qualityProfileValidURIsQOI=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash())
 						.concat("percentageValidURIs"));
 				
@@ -155,22 +169,68 @@ FileOutputStream outputStream;
 			
 		
 		} catch (Exception e) {
-			_log.error("exception {}", e.getCause());
+			_log.error("exception {}", e);
 		}
 		
 		
 		try {
-			outputStream = new FileOutputStream( "/Users/qaiser/git/LinkedDataQuality/linked-data-quality/src/main/resources/data.n3",true );
-			mdl.write(outputStream,"RDF/XML");
+			outputStream = new FileOutputStream( "data.n3",true );
+			mdl.write(outputStream,"N3");
+			mdl.write(System.out,"RDF/XML");
 		} catch (IOException e) {
-			_log.error("IO exception {}", e.getCause());
+			_log.error("IO exception {}", e);
 		}
 		
 		
 
 		
 	}
+	public String getHost (String endp){
+		
+		URL urlDomain=null;
+		try {
+			urlDomain= new URL(endp);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return urlDomain.getHost();
+	}
 	
+	public Set<String> getDateTimeStamp(String endp, String dataType){
+		
+		
+		Set<String> setOfUri= new HashSet<String>();
+		QueryExecution qryExec= null;
+		
+		String qryStr= "prefix xsd: <http://www.w3.org/2001/XMLSchema#> " +
+				"select * { ?s ?p ?o " +
+				"filter (datatype(?o) = xsd:"+dataType+") " +
+				"filter regex(?o,\"^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\",\"i\")" +
+						"}";
+	try{	
+		qryExec= execQueries(endp, qryStr);
+		
+		ResultSet resuts= qryExec.execSelect();
+		
+		while(resuts.hasNext()){
+			
+			QuerySolution sol= resuts.nextSolution();
+
+			RDFNode rdfNObj = sol.get("?o");
+			setOfUri.add(sol.get("?o").toString());
+		}
+
+	
+	}catch(Exception e){
+		_log.error("exception: {}", e);
+	}
+	if(setOfUri.size()>=1){
+		return setOfUri;
+		}else{
+			return null;
+		}
+	}
 	public Set<String> getAllResources(String endp){
 		
 
@@ -178,7 +238,7 @@ FileOutputStream outputStream;
 		QueryExecution qryExec= null;
 		
 		String qryStr= "select distinct * {?s ?p ?o} limit 500";
-		
+		try{	
 		qryExec= execQueries(endp, qryStr);
 		
 		ResultSet resuts= qryExec.execSelect();
@@ -202,7 +262,9 @@ FileOutputStream outputStream;
 				}
 			}
 		}
-
+		}catch(Exception e){
+			_log.error("exception: {}", e);
+		}
 		return setOfUri;
 	}
 	
