@@ -45,6 +45,9 @@ FileOutputStream outputStream;
 		Set<String> validURISet;
 		Set<String> strDateTimeSet;
 		Set<String> dateTimeSet;
+		int totalBlankNodes=0;
+		int totalSubBlankNodes=0;
+		int totalObjBlankNodes=0;
 		
 		// get the total resources of the given dataset to do further processing 
 		Set<String> allResources= getAllResources(endp);
@@ -56,11 +59,15 @@ FileOutputStream outputStream;
 		Resource qualityProfile= null;
 		Resource qualityProfileTotalURIs= null;
 		Resource qualityProfileDateTypeAsStr= null;
+		Resource qualityProfileDateTypeAsStrPercentage= null;
 		Resource qualityProfileTotalDateType= null;
 		Resource qualityProfileDerefInfo= null;
 		Resource qualityProfileDerefQOI= null;
 		Resource qualityProfileValidURIsInfo= null;
 		Resource qualityProfileValidURIsQOI=null;
+		Resource qualityProfileBlankNodesInfo=null;
+		Resource qualityProfileSubBlankNodesInfo=null;
+		Resource qualityProfileObjBlankNodesInfo=null;
 
 		try {
 			String currentTime= LDQUtils.getCurrentTime();
@@ -76,7 +83,7 @@ FileOutputStream outputStream;
 			
 			strDateTimeSet=getDateTimeStamp(endp, "string");
 			
-			dateTimeSet=getDateTimeStamp(endp, "date");
+			dateTimeSet=getDateTimeStamp(endp, "dateTimeStamp");
 			
 			qualityProfile.addProperty(VocabLDQ.isGeneratedAt, mdl.createTypedLiteral(currentTime,
 					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"));
@@ -85,7 +92,7 @@ FileOutputStream outputStream;
 					//.addProperty(VocabLDQ.DateTypedLiterals, mdl.createTypedLiteral((dateTimeSet!=null) ? dateTimeSet.size():0));
 			
 			// get the total resources/URIs of the dataset
-			if(allResources.size()>0){
+			if(allResources!=null&&allResources.size()>0){
 				
 				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash()).concat("totalURIs")));
@@ -106,9 +113,78 @@ FileOutputStream outputStream;
 			}
 			
 			
+			// get the blank nodes
+			
+			totalBlankNodes= getTotalBlankNodes(endp);
+			
+			if(totalBlankNodes>0){
+				
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("totalBlankNodes")));
+				
+				// dereference Info
+				qualityProfileBlankNodesInfo=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("totalBlankNodes"));
+				
+				qualityProfileBlankNodesInfo.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Total Blank Nodes")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "Info")
+						.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(totalBlankNodes)));
+			}
+			
+			totalSubBlankNodes= getsubjectAsBlank(endp);
+			
+			if(totalSubBlankNodes>0){
+				
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("totalSubjectBlankNodes")));
+				
+				// dereference Info
+				qualityProfileSubBlankNodesInfo=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("totalSubjectBlankNodes"));
+				
+				qualityProfileSubBlankNodesInfo.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Total Subjects Blank Nodes")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "Info")
+						.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(totalSubBlankNodes)));
+			}
+			
+			totalObjBlankNodes= getobjectAsBlank(endp);
+			
+			if(totalObjBlankNodes>0){
+				
+				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash()).concat("totalObjectBlankNodes")));
+				
+				// dereference Info
+				qualityProfileObjBlankNodesInfo=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+						.concat(LDQUtils.appendSlash())
+						.concat("totalObjectBlankNodes"));
+				
+				qualityProfileObjBlankNodesInfo.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+						"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+						.addProperty(VocabLDQ.hasName, "Total Objects Blank Nodes")
+						.addProperty(VocabLDQ.hasCategory, "Completeness")
+						.addProperty(VocabLDQ.hasCategory, "accuracy")
+						.addProperty(VocabLDQ.hasType, "Info")
+						.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(totalObjBlankNodes)));
+			}
+			
+			
 			
 			// get the total DateTime as String of the dataset
-						if(strDateTimeSet.size()>0){
+						if(strDateTimeSet!=null&&strDateTimeSet.size()>0){
 							
 							qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 									.concat(LDQUtils.appendSlash()).concat("totalDateTimeAsString")));
@@ -128,10 +204,54 @@ FileOutputStream outputStream;
 									.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(strDateTimeSet.size())));
 						}
 						
+				// get the the data type 
+						
+			if(dateTimeSet!=null&&dateTimeSet.size()>0){
+							
+							qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+									.concat(LDQUtils.appendSlash()).concat("totalDateTime")));
+							
+							// dereference Info
+							qualityProfileTotalDateType=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+									.concat(LDQUtils.appendSlash())
+									.concat("totalDateTime"));
+							
+							qualityProfileTotalDateType.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+									"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+									.addProperty(VocabLDQ.hasName, "Total DateTime Types")
+									.addProperty(VocabLDQ.hasCategory, "Completeness")
+									.addProperty(VocabLDQ.hasCategory, "accuracy")
+									.addProperty(VocabLDQ.hasType, "Info")
+									.addProperty(VocabLDQ.hasQualityMetric, "Number(int)")
+									.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Integer(dateTimeSet.size())));
+						}
+				
+			// get the date type string percentage 
+			int totalDateTypes= ((strDateTimeSet!=null) ? strDateTimeSet.size() : 0) + ((dateTimeSet!=null) ? dateTimeSet.size() : 0);
+			
+			if(totalDateTypes>0){
+			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash()).concat("percentageDateTimeAsString")));
+			
+			qualityProfileDateTypeAsStrPercentage=mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
+					.concat(LDQUtils.appendSlash())
+					.concat("percentageDateTimeAsString"));
+			
+			qualityProfileDateTypeAsStrPercentage.addProperty(VocabLDQ.evaluatedAt, mdl.createTypedLiteral(LDQUtils.getCurrentTime(),
+					"http://www.w3.org/2001/XMLSchema#dateTimeStamp"))
+					.addProperty(VocabLDQ.hasName, "Percentage of Date type as string")
+					.addProperty(VocabLDQ.hasCategory, "Completeness")
+					.addProperty(VocabLDQ.hasCategory, "accuracy")
+					.addProperty(VocabLDQ.hasType, "QOI")
+					.addProperty(VocabLDQ.hasQualityMetric, "Percentage(%)")
+					.addProperty(VocabLDQ.hasTendency, "increase")
+					.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Float(LDQUtils.calcPercentage(strDateTimeSet.size(),totalDateTypes))));
+			
+			}			
 			// get the set of dereferenced URIs for future work this time only the size is required
-			derefURISet=URIDereference.getDereferencedURI(allResources);
+			derefURISet=URIDereference.getDereferencedURI(allResources,endp);
 		
-			if(derefURISet.size()>0){
+			if(derefURISet!=null&&derefURISet.size()>0){
 			qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 					.concat(LDQUtils.appendSlash()).concat("totalDereferenceableURIs")));
 			
@@ -170,9 +290,9 @@ FileOutputStream outputStream;
 			}
 
 			// get size of  the  valid uri's 
-			validURISet = URIValidator.getValidatedURIs(allResources);
+			validURISet = URIValidator.getValidatedURIs(allResources,endp);
 			
-			if(validURISet.size()>0){
+			if(validURISet!=null&&validURISet.size()>0){
 				qualityProfile.addProperty(VocabLDQ.contains, mdl.createResource(VocabLDQ.NS.concat(getHost(endp).concat(LDQUtils.appendSlash())).concat(currentTime)
 						.concat(LDQUtils.appendSlash()).concat("totalValidURIs")));
 				
@@ -237,10 +357,63 @@ FileOutputStream outputStream;
 		try {
 			urlDomain= new URL(endp);
 		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return urlDomain.getHost();
+	}
+	
+	
+	public int getTotalBlankNodes(String endp){
+		
+		int totalBlankNodes=0;
+		
+		totalBlankNodes+=getBlankNodes(endp,"?s");
+		totalBlankNodes+=getBlankNodes(endp,"?p");
+		totalBlankNodes+=getBlankNodes(endp,"?o");
+		
+		return totalBlankNodes;
+	
+	}
+	
+	public int getsubjectAsBlank (String endp){
+		int subBlankNodes=0;
+		subBlankNodes+=getBlankNodes(endp,"?s");
+		return subBlankNodes;
+		
+	}
+	public int getobjectAsBlank (String endp){
+		int objBlankNodes=0;
+		objBlankNodes+=getBlankNodes(endp,"?o");
+		return objBlankNodes;
+		
+	}
+	public int getBlankNodes(String endp, String var){
+		
+		int totalBlankNodes=0;
+		
+		QueryExecution qryExec= null;
+		
+		String qryStr= "select (count("+var+") as ?asBlankNode) " +
+				"where { ?s ?p ?o. " +
+				"filter(isBlank("+var+")) }";
+				
+		try{	
+			qryExec= execQueries(endp, qryStr);
+			
+			ResultSet resuts= qryExec.execSelect();
+			
+			while(resuts.hasNext()){
+				
+				QuerySolution sol= resuts.nextSolution();
+				totalBlankNodes=(Integer) sol.get("?asBlankNode").asLiteral().getValue();
+			}
+
+		
+		}catch(Exception e){
+			_log.error("exception: {}", e);
+		}
+		
+		return totalBlankNodes;
 	}
 	
 	public Set<String> getDateTimeStamp(String endp, String dataType){
@@ -283,7 +456,7 @@ FileOutputStream outputStream;
 		Set<String> setOfUri=  new HashSet<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct * {?s ?p ?o} limit 500";
+		String qryStr= "select distinct * {?s ?p ?o}";
 		try{	
 		qryExec= execQueries(endp, qryStr);
 		
@@ -319,7 +492,7 @@ FileOutputStream outputStream;
 		Set<String> setOfUri=  new HashSet<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct ?class {[] a ?class} limit 10";
+		String qryStr= "select distinct ?class {[] a ?class} ";
 		
 		qryExec= execQueries(endp, qryStr);
 		
@@ -344,7 +517,7 @@ FileOutputStream outputStream;
 	
 	QueryExecution qryExec= null;
 		
-		String qryStr= String.format("select distinct ?class {?class a <%s>} limit 10",classUri);
+		String qryStr= String.format("select distinct ?class {?class a <%s>} ",classUri);
 		
 		qryExec= execQueries(endp, qryStr);
 		
@@ -367,7 +540,7 @@ FileOutputStream outputStream;
 		List<String> listOfUri=  new ArrayList<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct ?s {?s ?p ?o} limit 10";
+		String qryStr= "select distinct ?s {?s ?p ?o}";
 		
 		qryExec= execQueries(endp, qryStr);
 		
@@ -389,7 +562,7 @@ FileOutputStream outputStream;
 		List<String> listOfUri=  new ArrayList<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct ?p {?s ?p ?o} limit 10";
+		String qryStr= "select distinct ?p {?s ?p ?o}";
 		
 		qryExec= execQueries(endp, qryStr);
 		
@@ -411,7 +584,7 @@ FileOutputStream outputStream;
 		List<String> listOfUri=  new ArrayList<String>();
 		QueryExecution qryExec= null;
 		
-		String qryStr= "select distinct ?o {?s ?p ?o} limit 10";
+		String qryStr= "select distinct ?o {?s ?p ?o}";
 		
 		qryExec= execQueries(endp, qryStr);
 		

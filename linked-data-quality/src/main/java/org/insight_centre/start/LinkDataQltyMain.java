@@ -16,14 +16,14 @@ public class LinkDataQltyMain {
 static List<String> endpointLst= new ArrayList<String>();
 	
 	static{
-		//endpointLst.add("http://dbpedia.org/sparql");
-		//endpointLst.add("http://bio2rdf.org/sparql");
-		//endpointLst.add("http://data.semanticweb.org/sparql");
-		//endpointLst.add("http://lod.openlinksw.com/sparql/");
-		//endpointLst.add("http://geo.linkeddata.es/sparql");
+		endpointLst.add("http://dbpedia.org/sparql");
+		endpointLst.add("http://bio2rdf.org/sparql");
+		endpointLst.add("http://data.semanticweb.org/sparql");
+		endpointLst.add("http://lod.openlinksw.com/sparql/");
+		endpointLst.add("http://geo.linkeddata.es/sparql");
 		
 		//for test
-		endpointLst.add("http://chebi.bio2rdf.org/sparql");
+		//endpointLst.add("http://chebi.bio2rdf.org/sparql");
 	}
 	
 	
@@ -62,9 +62,9 @@ static List<String> endpointLst= new ArrayList<String>();
 		classList = recordFetcher.getClasses(endp);
 
 		// validate the uris
-		URIValidator.uriValidator(classList);
+		URIValidator.uriValidator(classList,endp);
 		// dereference the class uri
-		URIDereference.uriDereferencer(classList);
+		URIDereference.uriDereferencer(classList,endp);
 			
 		return classList;
 	}
@@ -80,9 +80,9 @@ static List<String> endpointLst= new ArrayList<String>();
 			
 		}
 		// validate the uris
-		URIValidator.uriValidator(setOfInstacnes);
+		URIValidator.uriValidator(setOfInstacnes,endp);
 		// dereference the class uri
-		URIDereference.uriDereferencer(setOfInstacnes);
+		URIDereference.uriDereferencer(setOfInstacnes,endp);
 			
 		return setOfInstacnes;
 	}

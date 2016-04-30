@@ -1,7 +1,9 @@
 package org.insight_centre.uri.factory;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import org.apache.commons.validator.routines.UrlValidator;
+import org.jsoup.Jsoup;
+import org.jsoup.Connection.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,14 +24,14 @@ public abstract class URIManipulator {
 	
 	static final Logger _log= LoggerFactory.getLogger(URIManipulator.class);
 	
-	public static Set<String> uriDereferencer (Set<String> lstURI){
+	public static Set<String> uriDereferencer (Set<String> lstURI, String endp){
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 		Future<String> derefrencedVar;
 		
 		Set<String> dereferencedURIs= new HashSet<String>();
 		
 		for (String url:lstURI) {
-            derefrencedVar = executor.submit(new DerefCallable(url));
+            derefrencedVar = executor.submit(new DerefCallable(url, endp));
             try {
             	// add the dereferenced URI into set
 				dereferencedURIs.add(derefrencedVar.get());
@@ -53,7 +57,7 @@ public abstract class URIManipulator {
 	}
 	
 	
-	public static Set<String> uriValidator (Set<String> URIstr){
+	public static Set<String> uriValidator (Set<String> URIstr, String endp){
 	
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 	    Future<String> validURIVar;
@@ -61,7 +65,7 @@ public abstract class URIManipulator {
 	    Set<String> validURIs= new HashSet<String>();
 	    
 		for (String url:URIstr) {
-            validURIVar= executor.submit(new URIValidatorCallable(url));
+            validURIVar= executor.submit(new URIValidatorCallable(url, endp));
             
             try {
             	// add the valid URI into set
@@ -91,9 +95,11 @@ public abstract class URIManipulator {
 	public static class URIValidatorCallable implements Callable<String>{
 
 		private final String url;
+		private final String endp;
 		
-		URIValidatorCallable(String url) {
+		URIValidatorCallable(String url, String endp) {
 			this.url= url;
+			this.endp=endp;
 		}
 
 		public String call() throws Exception {
@@ -104,10 +110,10 @@ public abstract class URIManipulator {
 			checkValidity = validator.isValid(url);
 
 			if (checkValidity) {
-				System.out.println("uri is valid");
 				return url;
 			} else {
-				System.err.println("uri is not valid");
+				_log.error("url is not valid {} for endpoint {}", url, endp);
+				//System.err.println("uri is not valid");
 				return "";
 			}
 			
@@ -119,39 +125,75 @@ public abstract class URIManipulator {
 	
     public static class DerefCallable implements Callable<String> {
         private final String url;
+        private final String endp;
  
-        DerefCallable(String url) {
+        DerefCallable(String url, String endp) {
             this.url = url;
+            this.endp=endp;
         }
  
 		public String call() throws Exception {
 
             String result = "";
-            int code = 200;
+            int code = 200, code2=200;
             try {
-                URL siteURL = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) siteURL
-                        .openConnection();
+            	String urlRedirectChecked=urlRedirect(url);
+                URL siteURL = new URL(urlRedirectChecked);
+                
+                HttpURLConnection connection=null, connection2=null;
+                connection = (HttpURLConnection) siteURL.openConnection();
+                
                 connection.setRequestProperty("Accept", "application/rdf+xml");
                 //connection.setRequestMethod("HEAD");
                 connection.connect();
- 
                 code = connection.getResponseCode();
-                if (code == 200) {
+
+                connection2=(HttpURLConnection) siteURL.openConnection();
+                connection2.connect();
+                code2=connection2.getResponseCode();
+               
+                if (code == 200 || code2==200) {
                     result = url;
-                    long threadId = Thread.currentThread().getId();
-    	            System.out.println("Thread # " + threadId + " is doing this task");
+                    //long threadId = Thread.currentThread().getId();
+    	            //System.out.println("Thread # " + threadId + " is doing this task");
     	            
-                }
+                }   
+            	
+            	
+            	
+
+                
             } catch (Exception e) {
                 System.err.println("not a dereferenced uri"+ url);
-                _log.error("not a dereferenceable uri {}", url);
-                long threadId = Thread.currentThread().getId();
-	            System.out.println("Thread # " + threadId + " is doing this task");
+                _log.error("not a dereferenceable uri {} for endpoint {}", url, endp);
+                //long threadId = Thread.currentThread().getId();
+	            //System.out.println("Thread # " + threadId + " is doing this task");
 	            
             }
             
 			return result;
 		}
+	
     }
+    
+	private static String  urlRedirect(String url){
+		
+		Response resp;
+		try {
+			resp = Jsoup.connect(url).followRedirects(false).execute();
+			 
+			
+			   		if(resp.hasHeader("location")){
+			   			url=resp.header("location");
+			   			urlRedirect(url); // callback
+			   			
+
+			   	}
+		} catch (IOException e) {
+		_log.error("error while checking redirection of url {} {}", e.getMessage(), url);
+		}
+   	
+		return url;
+	}
+    
 }
