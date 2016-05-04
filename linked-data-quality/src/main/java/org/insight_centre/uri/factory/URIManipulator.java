@@ -6,6 +6,8 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -112,8 +114,7 @@ public abstract class URIManipulator {
 			if (checkValidity) {
 				return url;
 			} else {
-				_log.error("url is not valid {} for endpoint {}", url, endp);
-				//System.err.println("uri is not valid");
+			//	_log.error("url is not valid {} for endpoint {}", url, endp);
 				return "";
 			}
 			
@@ -135,40 +136,30 @@ public abstract class URIManipulator {
 		public String call() throws Exception {
 
             String result = "";
-            int code = 200, code2=200;
+            int code = 200;
             try {
             	String urlRedirectChecked=urlRedirect(url);
                 URL siteURL = new URL(urlRedirectChecked);
                 
-                HttpURLConnection connection=null, connection2=null;
+                HttpURLConnection connection=null;
                 connection = (HttpURLConnection) siteURL.openConnection();
-                
-                connection.setRequestProperty("Accept", "application/rdf+xml");
-                //connection.setRequestMethod("HEAD");
+                connection.setRequestProperty("Accept", "*/*");
+                connection.setConnectTimeout(1500);
+                connection.setReadTimeout(1500);
                 connection.connect();
                 code = connection.getResponseCode();
 
-                connection2=(HttpURLConnection) siteURL.openConnection();
-                connection2.connect();
-                code2=connection2.getResponseCode();
-               
-                if (code == 200 || code2==200) {
+                if (code == 200) {
                     result = url;
-                    //long threadId = Thread.currentThread().getId();
-    	            //System.out.println("Thread # " + threadId + " is doing this task");
-    	            
+                  //  _log.info("uri is dereferenceable {}", url);
+                    
                 }   
-            	
-            	
-            	
-
-                
+    
             } catch (Exception e) {
-                System.err.println("not a dereferenced uri"+ url);
-                _log.error("not a dereferenceable uri {} for endpoint {}", url, endp);
-                //long threadId = Thread.currentThread().getId();
-	            //System.out.println("Thread # " + threadId + " is doing this task");
-	            
+                
+            	// too many just commented to avoid the file size not be bigger 
+            	//_log.error("not a dereferenceable uri {} for endpoint {}", url, endp);
+                
             }
             
 			return result;
@@ -180,7 +171,9 @@ public abstract class URIManipulator {
 		
 		Response resp;
 		try {
-			resp = Jsoup.connect(url).followRedirects(false).execute();
+			
+			
+			resp = Jsoup.connect(url).timeout(1500).followRedirects(false).timeout(1500).execute();
 			 
 			
 			   		if(resp.hasHeader("location")){
