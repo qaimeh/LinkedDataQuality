@@ -481,32 +481,43 @@ FileOutputStream outputStream;
 		return setOfUri;
 	}
 	
-	public Set<String> getResoruces(String var, String endp){
-		
+	public Set<String> getResoruces(String var, String endp) {
+
 		Set<String> setOfUri = new HashSet<String>();
 
 		QueryExecution qryExec = null;
+		ResultSet resuts = null;
+		int offset = 0;
 
-		String qryStr = "select distinct " + checkifVarIsOK(var)+ " where {" + "GRAPH ?g {" + "?s ?p ?o."
-				+ "filter isIRI(" + checkifVarIsOK(var) + ")" + "} " + "}";
 		try {
-			qryExec = execQueries(endp, qryStr);
+			do {
 
-			ResultSet resuts = qryExec.execSelect();
+				String qryStr = "select distinct " + checkifVarIsOK(var)
+						+ " where {" + "GRAPH ?g {" + "?s ?p ?o."
+						+ "filter isIRI(" + checkifVarIsOK(var) + ")" + "} "
+						+ "} LIMIT 10000 OFFSET " + offset;
 
-			while (resuts.hasNext()) {
+				qryExec = execQueries(endp, qryStr);
 
-				QuerySolution sol = resuts.nextSolution();
-				 				
-				RDFNode rdfNode = sol.get(checkifVarIsOK(var));
+				resuts = qryExec.execSelect();
 
-				if (!rdfNode.toString().startsWith("http://www.openlinksw.com/")) {
+				while (resuts.hasNext()) {
 
-					if (checkIfResource(rdfNode)) {
+					QuerySolution sol = resuts.nextSolution();
+					RDFNode rdfNode = sol.get(checkifVarIsOK(var));
+
+					if (!rdfNode.toString().startsWith("http://www.openlinksw.com/")) {
+
+						System.err.println(sol.get(checkifVarIsOK(var)));
+						// if (checkIfResource(rdfNode)) {
 						setOfUri.add(sol.get(checkifVarIsOK(var)).toString());
+						// }
 					}
 				}
-			}
+
+				offset += 10000;// to iterate all the records of the data set
+			
+			} while (setOfUri != null && setOfUri.size() == offset);
 		} catch (Exception e) {
 			_log.error("exception: {}", e);
 		}

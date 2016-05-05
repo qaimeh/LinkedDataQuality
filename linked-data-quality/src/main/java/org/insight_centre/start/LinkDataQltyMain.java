@@ -16,7 +16,7 @@ public class LinkDataQltyMain {
 static List<String> endpointLst= new ArrayList<String>();
 	
 	static{
-		//endpointLst.add("http://dbpedia.org/sparql");
+		endpointLst.add("http://dbpedia.org/sparql");
 		//endpointLst.add("http://bio2rdf.org/sparql");
 		//endpointLst.add("http://data.semanticweb.org/sparql");
 		//endpointLst.add("http://lod.openlinksw.com/sparql/");
@@ -24,7 +24,7 @@ static List<String> endpointLst= new ArrayList<String>();
 		
 		//for test
 		//endpointLst.add("http://kegg.bio2rdf.org/sparql");
-		endpointLst.add("http://chebi.bio2rdf.org/sparql");
+	//	endpointLst.add("http://chebi.bio2rdf.org/sparql");
 		
 		
 		//endpointLst.add("http://lod.openlinksw.com/sparql/");
