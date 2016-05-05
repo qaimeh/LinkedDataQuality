@@ -123,7 +123,7 @@ public abstract class URIManipulator {
 	}
 	
 	
-	
+	static int dereferenced=0;
     public static class DerefCallable implements Callable<String> {
         private final String url;
         private final String endp;
@@ -151,6 +151,7 @@ public abstract class URIManipulator {
 
                 if (code == 200) {
                     result = url;
+                   System.out.println( dereferenced++);
                   //  _log.info("uri is dereferenceable {}", url);
                     
                 }   
@@ -183,7 +184,7 @@ public abstract class URIManipulator {
 
 			   	}
 		} catch (IOException e) {
-		_log.error("error while checking redirection of url {} {}", e.getMessage(), url);
+		//_log.error("error while checking redirection of url {} {}", e.getMessage(), url);
 		}
    	
 		return url;
