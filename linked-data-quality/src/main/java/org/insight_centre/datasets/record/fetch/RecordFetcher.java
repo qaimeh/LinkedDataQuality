@@ -82,9 +82,21 @@ FileOutputStream outputStream;
 			
 			// get the set of DateTime values
 			
-			strDateTimeSet=null;//=getDateTimeStamp(endp, "string");
+			strDateTimeSet=getDateTimeStamp(endp, "string");
 			
-			dateTimeSet=null;//=getDateTimeStamp(endp, "dateTimeStamp");
+			dateTimeSet=getDateTimeStamp(endp, "dateTimeStamp");
+			
+			Set<String> dateTimeFormat= new HashSet<String>();
+			Set<String> dateFormat= new HashSet<String>();
+			
+			if((dateTimeFormat=getDateTimeStamp(endp, "dateTime"))!=null){
+				dateTimeSet.addAll(dateTimeFormat);
+			}
+			if((dateFormat=getDateTimeStamp(endp, "date"))!=null){
+				dateTimeSet.addAll(dateFormat);
+			}
+	
+	//		dateTimeSetgetDateTimeStamp(endp, "date"));
 			
 			_log.info("All resources are {} for endpoint {}",allResources.size(), endp);
 		//	System.out.println((strDateTimeSet!=null) ? strDateTimeSet.size():0);
@@ -120,7 +132,7 @@ FileOutputStream outputStream;
 			
 			// get the blank nodes
 			
-			totalBlankNodes= 0;// getTotalBlankNodes(endp);
+			totalBlankNodes= getTotalBlankNodes(endp);
 			_log.info("total objects blank nodes are {}", totalBlankNodes);
 			
 			if(totalBlankNodes>=0){
@@ -143,7 +155,7 @@ FileOutputStream outputStream;
 						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Long(totalBlankNodes)));
 			}
 			
-		totalSubBlankNodes= 0;//getsubjectAsBlank(endp);
+		totalSubBlankNodes= getsubjectAsBlank(endp);
 		_log.info("total objects blank nodes are {}", totalSubBlankNodes);
 			
 			if(totalSubBlankNodes>0){
@@ -166,7 +178,7 @@ FileOutputStream outputStream;
 						.addProperty(VocabLDQ.hasValue, mdl.createTypedLiteral(new Long(totalSubBlankNodes)));
 			}
 			
-			totalObjBlankNodes= 0;// getobjectAsBlank(endp);
+			totalObjBlankNodes= getobjectAsBlank(endp);
 			_log.info("total objects blank nodes are {}", totalObjBlankNodes);
 			
 			if(totalObjBlankNodes>=0){
@@ -492,27 +504,33 @@ FileOutputStream outputStream;
 		try {
 			do {
 
-				String qryStr = "select distinct " + checkifVarIsOK(var)
+		/*		String qryStr = "select distinct " + checkifVarIsOK(var)
 						+ " where {" + "GRAPH ?g {" + "?s ?p ?o."
 						+ "filter isIRI(" + checkifVarIsOK(var) + ")" + "} "
 						+ "} LIMIT 10000 OFFSET " + offset;
-
-				qryExec = execQueries(endp, qryStr);
+				*/
+				String strQry="select distinct "+ checkifVarIsOK(var)
+						+ " where {GRAPH ?g {?s ?p ?o."
+						+ " Filter (!regex(" + checkifVarIsOK(var) + ", '^http://www.openlinksw.com'))"
+						+ " filter isIRI(" + checkifVarIsOK(var) + ")"
+						+ "} } LIMIT 10000 OFFSET " + offset;
+				
+				qryExec = execQueries(endp, strQry);
 
 				resuts = qryExec.execSelect();
 
 				while (resuts.hasNext()) {
 
 					QuerySolution sol = resuts.nextSolution();
-					RDFNode rdfNode = sol.get(checkifVarIsOK(var));
+					//RDFNode rdfNode = sol.get(checkifVarIsOK(var));
 
-					if (!rdfNode.toString().startsWith("http://www.openlinksw.com/")) {
+					//if (!rdfNode.toString().startsWith("http://www.openlinksw.com/")) {
 
 						System.err.println(sol.get(checkifVarIsOK(var)));
 						// if (checkIfResource(rdfNode)) {
 						setOfUri.add(sol.get(checkifVarIsOK(var)).toString());
 						// }
-					}
+					//}
 				}
 
 				offset += 10000;// to iterate all the records of the data set

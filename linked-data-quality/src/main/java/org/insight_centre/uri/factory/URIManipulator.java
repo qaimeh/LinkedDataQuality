@@ -151,7 +151,7 @@ public abstract class URIManipulator {
 
                 if (code == 200) {
                     result = url;
-                   System.out.println( dereferenced++);
+                  // System.out.println( dereferenced++);
                   //  _log.info("uri is dereferenceable {}", url);
                     
                 }   
